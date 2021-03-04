@@ -1,6 +1,6 @@
 <template>
 <div @change="toGetInputValue">
-    <input v-model="inputValue" :placeholder='placeholder' class="input"/>
+    <input v-model="inputValue" :placeholder='placeholder' :type="type" class="input"/>
     </div>
 </template>
 
@@ -11,7 +11,8 @@ export default {
     inputValue: ''
   }),
   props: {
-    placeholder: { type: String }
+    placeholder: { type: String },
+    type: { type: String }
   },
   methods: {
     toGetInputValue () {
@@ -23,10 +24,17 @@ export default {
 
 <style lang="scss" scoped>
 .input{
-    margin-bottom: 20px;
+
     min-width: 220px;
     min-height: 40px;
     box-shadow: 17px 18px 30px -15px rgba(0,0,0,0.41);
  border: #ff662d solid 1px;
+ &::placeholder{
+   color :grey
+ }
+  &:focus{
+border-style:none;
+outline: 1px solid black;
+ }
 }
 </style>

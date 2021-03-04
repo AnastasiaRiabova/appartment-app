@@ -1,9 +1,9 @@
 <template>
   <div class="form">
   <h1 class="header">Login</h1>
-    <form>
-      <Input @onSubmit="onHandleEmail" placeholder='Email'/>
-      <Input @onSubmit="onHandlePassword"  placeholder='Password'/>
+    <form >
+      <Input @onSubmit="onHandleEmail" placeholder='Email' type="text" class='inputMargin'/>
+      <Input @onSubmit="onHandlePassword"  placeholder='Password' type="password" class='inputMargin'/>
       <Button type='submit' @click.native.prevent="toGetValue">Button</Button>
     </form>
 
@@ -46,7 +46,7 @@ export default {
   }
 }
 </script>
-//
+
 <style lang="scss" scoped>
 .form {
 padding: 20px;
@@ -62,5 +62,8 @@ padding: 20px;
     margin: 0;
     margin-bottom: 20px;
     font-size: 20px;
+}
+.inputMargin{
+  margin-bottom: 20px;
 }
 </style>

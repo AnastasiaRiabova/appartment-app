@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Homepage from '../views/Homepage.vue'
 import Login from '../views/Login.vue'
 import Registration from '../views/Registration.vue'
+import OneFlat from '../views/OneFlat.vue'
 // import PrivetRoute from '../router/routersTEST'
 // import isAuth from '../store/modules/userAuth'
 import store from '../store/index'
@@ -47,6 +48,14 @@ const routes = [
     component: Registration,
     meta: {
       hideForAuth: true
+    }
+  },
+  {
+    path: '/apartment/:id',
+    name: 'apartment',
+    component: OneFlat,
+    meta: {
+      requiresAuth: true
     }
   }
 ]

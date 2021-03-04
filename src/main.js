@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import 'modern-normalize'
+import './scss/reset.scss'
 
 Vue.config.productionTip = false
 

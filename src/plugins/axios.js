@@ -1,12 +1,12 @@
 import axios from 'axios'
-import userAuth from '../store/modules/userAuth'
+import store from '../store'
 
 const instance = axios.create({
   baseURL: 'https://apt-booking-api.herokuapp.com'
 })
 instance.interceptors.request.use(
   (config) => {
-    const { token } = userAuth.state
+    const token = store.state.userAuth.token
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`

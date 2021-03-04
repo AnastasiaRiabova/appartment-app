@@ -2,12 +2,14 @@
   <div class="header-main">
     <Container>
       <div class="header">
-        <img src="../assets/images/Logo.svg" alt="Logo"  class="logo"/>
+      <router-link to="/">  <img src="../assets/images/Logo.svg" alt="Logo" class="logo" /></router-link>
         <div id="nav" v-if="!isAuth">
           <router-link to="/login">Login</router-link> /
           <router-link to="/registration">Registration</router-link>
         </div>
-      <button v-if="isAuth" @click="toLogOut">LogOUt</button>
+        <div v-if="isAuth" class='button-position'>
+          <Button  @click.native="toLogOut">Logout</Button>
+        </div>
       </div>
     </Container>
   </div>
@@ -16,21 +18,23 @@
 <script>
 import Container from '../components/shared/Container'
 import { mapActions, mapGetters } from 'vuex'
+import Button from '../components/shared/Button'
 export default {
   name: 'Header',
   components: {
-    Container
+    Container,
+    Button
   },
   methods: {
     ...mapActions(['toLogOutUser']),
     async toLogOut () {
       try {
         await this.toLogOutUser()
+        this.$router.push({ name: 'login' })
       } catch (error) {
         console.log(error)
       }
     }
-
   },
   computed: {
     ...mapGetters(['isAuth'])
@@ -39,8 +43,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.logo{
-    padding: 10px 30px;
+.logo {
+  padding: 10px 0px;
 }
 .header-main {
   width: 100%;
@@ -55,8 +59,8 @@ export default {
 }
 
 #nav {
-    padding: 10px 30px;
-    color: #ffffff;
+  padding: 10px 30px;
+  color: #ffffff;
 
   display: inline-block;
 
@@ -69,4 +73,5 @@ export default {
     }
   }
 }
+
 </style>

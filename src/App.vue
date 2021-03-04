@@ -1,22 +1,27 @@
 <template>
   <div id="app">
     <Header />
-    <div :class="{ 'test': isLogIn}">
-    <router-view />
+    <div :class="isLogin ? 'authUser' : 'login'">
+      <router-view />
     </div>
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from './components/Header'
 import Footer from './components/Footer'
+import { mapGetters } from 'vuex'
 export default {
   name: 'App',
   components: { Header, Footer },
-  data: () => ({
-    isLogIn: true
-  })
+
+  computed: {
+    ...mapGetters(['isAuth']),
+    isLogin () {
+      return Boolean(this.isAuth)
+    }
+  }
 }
 </script>
 <style lang="scss">
@@ -26,16 +31,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-height: calc(100% - 90px) ;
+  height: calc(100% - 90px);
 }
-.test{
-
-  background-image: url('./assets/images/BackgroundIMG.jpg');
+.login {
+  background-image: url("./assets/images/BackgroundIMG.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-height: 100%;
-padding: 50px;
+  min-height: 100%;
+  padding: 50px;
 }
-
+.authUser {
+  padding: 50px;
+   min-height: 100%;
+}
 </style>

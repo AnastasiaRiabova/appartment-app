@@ -2,9 +2,9 @@
   <div class="form">
   <h1 class="header">Registration</h1>
     <form>
-      <Input @onSubmit="onHandleName" placeholder='Name'/>
-      <Input @onSubmit="onHandleEmail" placeholder='Email'/>
-      <Input @onSubmit="onHandlePassword"  placeholder='Password'/>
+      <Input @onSubmit="onHandleName" placeholder='Name' type="text" class='inputMargin'/>
+      <Input @onSubmit="onHandleEmail" placeholder='Email' type="text" class='inputMargin'/>
+      <Input @onSubmit="onHandlePassword"  placeholder='Password' type="password" class='inputMargin'/>
       <Button type='submit' @click.native.prevent="toGetValue">Button</Button>
     </form>
 
@@ -69,5 +69,8 @@ padding: 20px;
     margin: 0;
     margin-bottom: 20px;
     font-size: 20px;
+}
+.inputMargin{
+  margin-bottom: 20px;
 }
 </style>
