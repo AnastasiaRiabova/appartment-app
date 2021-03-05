@@ -13,15 +13,16 @@ const getAllCities = {
     }
   },
   actions: {
-    async fetchCities ({ commit }) {
+    async fetchCities ({ commit, dispatch }) {
       try {
+        dispatch('toggleLoader', true, { root: true })
         const { data } = await axios.get('/cities')
 
         commit('GET_CITIES', data)
       } catch (error) {
         throw new Error(error)
       } finally {
-        console.log('loader')
+        dispatch('toggleLoader', false, { root: true })
       }
     }
   }

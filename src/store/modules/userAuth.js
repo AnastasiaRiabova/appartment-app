@@ -25,8 +25,9 @@ const userAuth = {
   },
   actions: {
 
-    async toRegisterUser ({ commit }, request) {
+    async toRegisterUser ({ commit, dispatch }, request) {
       try {
+        dispatch('toggleLoader', true, { root: true })
         const { data } = await axios.post('/users/register', request)
 
         commit('GET_USER_INFO', data)
@@ -34,30 +35,32 @@ const userAuth = {
         throw new Error(error)
         // console.log(error)
       } finally {
-        console.log('loader')
+        dispatch('toggleLoader', false, { root: true })
       }
     },
-    async toLoginUser ({ commit }, request) {
+    async toLoginUser ({ commit, dispatch }, request) {
       try {
+        dispatch('toggleLoader', true, { root: true })
         const { data } = await axios.post('/users/login', request)
 
         commit('GET_USER_INFO', data)
       } catch (error) {
         throw new Error(error)
       } finally {
-        console.log('loader')
+        dispatch('toggleLoader', false, { root: true })
       }
     },
-    async toLogOutUser ({ commit, getters }) {
+    async toLogOutUser ({ commit, dispatch }) {
       // const { isAuth } = getters
       try {
+        dispatch('toggleLoader', true, { root: true })
         await axios.post('/users/logout')
 
         commit('LOGOUT_USER')
       } catch (error) {
         throw new Error(error)
       } finally {
-        console.log('loader')
+        dispatch('toggleLoader', false, { root: true })
       }
     }
   }

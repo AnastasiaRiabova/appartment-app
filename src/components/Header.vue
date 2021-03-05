@@ -2,13 +2,30 @@
   <div class="header-main">
     <Container>
       <div class="header">
-      <router-link to="/">  <img src="../assets/images/Logo.svg" alt="Logo" class="logo" /></router-link>
+        <router-link to="/">
+          <img src="../assets/images/Logo.svg" alt="Logo" class="logo"
+        /></router-link>
         <div id="nav" v-if="!isAuth">
           <router-link to="/login">Login</router-link> /
           <router-link to="/registration">Registration</router-link>
         </div>
-        <div v-if="isAuth" class='button-position'>
-          <Button  @click.native="toLogOut">Logout</Button>
+        <div v-if="isAuth" class="button-position">
+          <div>Hello, {{ toGetName }}</div>
+          <img
+            src="../assets/images/man.svg"
+            alt="man"
+            width="20px"
+            height="20px"
+          />
+          <button @click="toLogOut" class="button-style">
+            <img
+              src="../assets/images/Frame.svg"
+              alt=""
+              width="20px"
+              height="20px"
+            />
+          </button>
+
         </div>
       </div>
     </Container>
@@ -18,12 +35,12 @@
 <script>
 import Container from '../components/shared/Container'
 import { mapActions, mapGetters } from 'vuex'
-import Button from '../components/shared/Button'
+
 export default {
   name: 'Header',
   components: {
-    Container,
-    Button
+    Container
+
   },
   methods: {
     ...mapActions(['toLogOutUser']),
@@ -37,12 +54,29 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['isAuth'])
+    ...mapGetters(['isAuth', 'toGetName'])
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.button-position {
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  color: white;
+  padding: 5px;
+}
+.button-style {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+
+  background: transparent;
+}
 .logo {
   padding: 10px 0px;
 }
@@ -73,5 +107,4 @@ export default {
     }
   }
 }
-
 </style>

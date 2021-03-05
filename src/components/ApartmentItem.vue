@@ -1,6 +1,6 @@
 <template>
- <router-link :to="{name:'apartment', params: { id }}">
-  <div class="apartments-item">
+ <router-link  class="apartments-item" :to="{name:'apartment', params: { id }}">
+  <div>
     <div class="apartments-item__inner">
       <img :src="imgUrl" alt="flatView"  class="apartments-item__photo">
       <div class="apartments-item__content">

@@ -16,17 +16,19 @@
   </article>
     <OwnerInfo/>
     </div>
+<Reviews/>
     </Container>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import Reviews from '../components/Reviews'
 import Container from '../components/shared/Container'
 import StarRating from '../components/shared/StarRating'
 import OwnerInfo from '../components/OwnerInfo'
 export default {
   name: 'OneFlat',
-  components: { StarRating, OwnerInfo, Container },
+  components: { StarRating, OwnerInfo, Container, Reviews },
   async created () {
     await this.fetchOneFlatInfo(this.$route.params.id)
   },
@@ -35,6 +37,9 @@ export default {
   },
   methods: {
     ...mapActions(['fetchOneFlatInfo'])
+  },
+  info () {
+    console.log(this.toGetFlatInfo)
   }
 }
 </script>
@@ -60,6 +65,8 @@ export default {
   &__description {
     line-height: 1.3;
     margin-top: 30px;
+    overflow: hidden;
+    padding: 20px;
   }
   &__btn {
     margin-top: 20px;
@@ -69,6 +76,6 @@ export default {
 }
 .wrapping{
   display: flex;
- justify-content: space-between;
+
 }
 </style>

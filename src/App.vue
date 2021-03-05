@@ -1,23 +1,26 @@
 <template>
   <div id="app">
+    <Loader v-if="getLoader"/>
     <Header />
     <div :class="isLogin ? 'authUser' : 'login'">
       <router-view />
     </div>
     <Footer />
+
   </div>
 </template>
 
 <script>
 import Header from './components/Header'
 import Footer from './components/Footer'
+import Loader from './components/shared/Loader'
 import { mapGetters } from 'vuex'
 export default {
   name: 'App',
-  components: { Header, Footer },
+  components: { Header, Footer, Loader },
 
   computed: {
-    ...mapGetters(['isAuth']),
+    ...mapGetters(['isAuth', 'getLoader']),
     isLogin () {
       return Boolean(this.isAuth)
     }

@@ -6,9 +6,10 @@
           <option value="">Choose city</option>
           <option v-for="city in toGetCities" :key="city">{{ city }}</option>
         </select>
-        <Input placeholder="Price from" type="text" v-model="price" />
+        <Input @onSubmit='toGetPrice' placeholder="Price from" type="number"/>
+        <div v-if="selectedCity">You Filter City:{{selectedCity}}</div><div v-if="apartmentPrice">Price:{{apartmentPrice}}</div>
       </div>
-      <Button>Filter</Button>
+      <Button @click.native="filterApartment">Filter</Button>
     </div>
     <div class="apartments-list">
     <ApartmentItem
@@ -37,18 +38,27 @@ export default {
   components: { Input, Button, ApartmentItem, Container },
   data: () => ({
     selectedCity: '',
-    price: ''
+    apartmentPrice: ''
   }),
   computed: {
     ...mapGetters(['toGetCities', 'toGetApartments'])
   },
   methods: {
-    ...mapActions(['fetchCities', 'fetchApartments'])
+    ...mapActions(['fetchCities', 'fetchApartments', 'filterApartments']),
+    filterApartment () {
+      this.filterApartments({ city: this.selectedCity, price: this.apartmentPrice })
+      // console.log(this.selectedCity)
+      // console.log(this.apartmentPrice)
+    },
+    toGetPrice (price) {
+      this.apartmentPrice = price
+    }
   },
   created () {
     this.fetchCities()
     this.fetchApartments()
   }
+
 }
 </script>
 
@@ -70,7 +80,7 @@ export default {
   min-height: 40px;
   box-shadow: 17px 18px 30px -15px rgba(0, 0, 0, 0.41);
   border: #ff662d solid 1px;
-  color: grey;
+  color: #808080;
   &:focus {
     border-style: none;
     outline: 1px solid black;
