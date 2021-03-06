@@ -4,6 +4,7 @@
     <p class="apartments-owner__info">Name: {{ getOwnerInfo.name }}</p>
     <p class="apartments-owner__info">Tel: {{ getOwnerInfo.phone }}</p>
     <p class="apartments-owner__info">E-mail: {{ getOwnerInfo.email }}</p>
+    <p v-for="{id, author, content} in toShowReview" :key="id">{{author}}: "{{content}}"</p>
   </section>
 </template>
 
@@ -12,7 +13,10 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'OwnerInfo',
   computed: {
-    ...mapGetters(['getOwnerInfo'])
+    ...mapGetters(['getOwnerInfo', 'toGetFlatInfo']),
+    toShowReview () {
+      return this.toGetFlatInfo.reviews
+    }
   }
 }
 </script>

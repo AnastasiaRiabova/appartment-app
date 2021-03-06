@@ -16,19 +16,24 @@
   </article>
     <OwnerInfo/>
     </div>
-<Reviews/>
+<button @click="openModal"> open Modal
+  </button>
+  <!-- <ModalWindow  v-if="toShowModal"></ModalWindow> -->
     </Container>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import Reviews from '../components/Reviews'
+// import ModalWindow from '../components/shared/ModalWindow'
 import Container from '../components/shared/Container'
 import StarRating from '../components/shared/StarRating'
 import OwnerInfo from '../components/OwnerInfo'
 export default {
   name: 'OneFlat',
-  components: { StarRating, OwnerInfo, Container, Reviews },
+  components: { StarRating, OwnerInfo, Container },
+  data: () => ({
+    toShowModal: false
+  }),
   async created () {
     await this.fetchOneFlatInfo(this.$route.params.id)
   },
@@ -36,7 +41,10 @@ export default {
     ...mapGetters(['toGetFlatInfo'])
   },
   methods: {
-    ...mapActions(['fetchOneFlatInfo'])
+    ...mapActions(['fetchOneFlatInfo', 'toggleModalWindow']),
+    openModal () {
+      this.toggleModalWindow(true)
+    }
   },
   info () {
     console.log(this.toGetFlatInfo)

@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Loader v-if="getLoader"/>
+    <ModalWindow v-if="getModalWindow"/>
     <Header />
     <div :class="isLogin ? 'authUser' : 'login'">
       <router-view />
@@ -14,13 +15,14 @@
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Loader from './components/shared/Loader'
+import ModalWindow from './components/shared/ModalWindow'
 import { mapGetters } from 'vuex'
 export default {
   name: 'App',
-  components: { Header, Footer, Loader },
+  components: { Header, Footer, Loader, ModalWindow },
 
   computed: {
-    ...mapGetters(['isAuth', 'getLoader']),
+    ...mapGetters(['isAuth', 'getLoader', 'getModalWindow']),
     isLogin () {
       return Boolean(this.isAuth)
     }

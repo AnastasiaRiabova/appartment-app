@@ -37,5 +37,10 @@ export default {
     border: 1px solid #ff662d;
     color: #ff662d;
   }
+  &:hover{
+    background: none;
+       border: 1px solid #ff662d;
+    color: #ff662d;
+  }
 }
 </style>

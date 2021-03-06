@@ -1,7 +1,7 @@
 <template>
-  <div class="form">
+  <div class="form"  >
       <h1 class="header">Review</h1>
-    <form>
+    <form   >
       <Input
         @onSubmit="onHandleAuthor"
         placeholder="Author"
@@ -23,6 +23,7 @@
       />
       <Button type='submit' @click.native.prevent="postReview">Send Review</Button>
     </form>
+      <button @click="toCloseModal">close</button>
 
   </div>
 </template>
@@ -45,7 +46,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['toPostReview']),
+    ...mapActions(['toPostReview', 'toggleModalWindow']),
     onHandleAuthor (author) {
       this.author = author
     },
@@ -59,13 +60,25 @@ export default {
         reviewBody: { author: this.author, content: this.content, rating: this.rating }
       }
       this.toPostReview(reviewObj)
+    },
+    toCloseModal (event) {
+      if (event.key === 'Shift' || event.type === 'click') {
+        this.toggleModalWindow(false)
+      }
     }
+  },
+  mounted () {
+    window.addEventListener('keyup', this.toCloseModal)
+  },
+  destroyed () {
+    window.removeEventListener('keyup', this.toCloseModal)
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .form {
+
 padding: 20px;
   margin-left: auto;
   margin-right: auto;
