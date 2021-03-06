@@ -1,33 +1,57 @@
 <template>
   <div class="form">
-  <h1 class="header">Registration</h1>
+    <h1 class="header">Registration</h1>
     <form>
-      <Input @onSubmit="onHandleName" placeholder='Name' type="text" class='inputMargin'/>
-      <Input @onSubmit="onHandleEmail" placeholder='Email' type="text" class='inputMargin'/>
-      <Input @onSubmit="onHandlePassword"  placeholder='Password' type="password" class='inputMargin'/>
-      <Button type='submit' @click.native.prevent="toGetValue">Button</Button>
+      <Input
+        @onSubmit="onHandleName"
+        placeholder="Name"
+        type="text"
+        class="inputMargin"
+        :rules='isValidName'
+      />
+      <Input
+        @onSubmit="onHandleEmail"
+        placeholder="Email"
+        type="text"
+        class="inputMargin"
+        :rules='isValidEmail'
+      />
+      <Input
+        @onSubmit="onHandlePassword"
+        placeholder="Password"
+        type="password"
+        class="inputMargin"
+        :rules='isValidPassword'
+      />
+      <Button type="submit" @click.native.prevent="toGetValue">Button</Button>
     </form>
-
   </div>
 </template>
 
 <script>
+import { string } from 'yup'
 import Input from '../components/shared/Input'
 import Button from '../components/shared/Button'
 import { mapActions } from 'vuex'
 export default {
   name: 'Registration',
   components: {
-    Input, Button
+    Input,
+    Button
   },
   data: () => ({
     name: '',
     email: '',
-    password: ''
+    password: '',
+    isValidName: string().required(),
+    isValidEmail: string()
+      .required()
+      .email(),
+    isValidPassword: string()
+      .required()
+      .min(6)
   }),
-  computed: {
-
-  },
+  computed: {},
   methods: {
     ...mapActions(['toRegisterUser']),
     onHandleName (name) {
@@ -42,7 +66,11 @@ export default {
 
     async toGetValue () {
       try {
-        const user = { name: this.name, email: this.email, password: this.password }
+        const user = {
+          name: this.name,
+          email: this.email,
+          password: this.password
+        }
         await this.toRegisterUser(user)
         console.log('await error')
         this.$router.push({ name: 'homepage' })
@@ -56,21 +84,22 @@ export default {
 
 <style lang="scss" scoped>
 .form {
-padding: 20px;
+  padding: 20px;
   margin-left: auto;
   margin-right: auto;
-  height: 300px;width: 300px;
+  height: 300px;
+  width: 300px;
   background-color: #ffffff;
   outline: #ff662d solid 1px;
-  box-shadow: 13px 11px 22px 1px rgba(0,0,0,0.6);
+  box-shadow: 13px 11px 22px 1px rgba(0, 0, 0, 0.6);
   /* height: 100vh; */
 }
-.header{
-    margin: 0;
-    margin-bottom: 20px;
-    font-size: 20px;
+.header {
+  margin: 0;
+  margin-bottom: 20px;
+  font-size: 20px;
 }
-.inputMargin{
+.inputMargin {
   margin-bottom: 20px;
 }
 </style>

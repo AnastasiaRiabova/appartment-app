@@ -1,7 +1,7 @@
 
 const loader = {
   state: {
-    showLoader: true
+    showLoader: false
   },
   getters: {
     getLoader: ({ showLoader }) => showLoader
