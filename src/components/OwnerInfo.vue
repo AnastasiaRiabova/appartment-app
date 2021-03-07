@@ -1,33 +1,39 @@
 <template>
   <section class="apartments-owner">
-    <h2 class="apartments-owner__title">Owner Infomation:</h2>
-    <p class="apartments-owner__info">Name: {{ getOwnerInfo.name }}</p>
-    <p class="apartments-owner__info">Tel: {{ getOwnerInfo.phone }}</p>
-    <p class="apartments-owner__info">E-mail: {{ getOwnerInfo.email }}</p>
-    <p v-for="{id, author, content} in toShowReview" :key="id">{{author}}: "{{content}}"</p>
+    <div class="owner-wrapping">
+      <h2 class="apartments-owner__title">Owner Infomation:</h2>
+      <p class="apartments-owner__info">Name: {{ getOwnerInfo.name }}</p>
+      <p class="apartments-owner__info">Tel: {{ getOwnerInfo.phone }}</p>
+      <p class="apartments-owner__info">E-mail: {{ getOwnerInfo.email }}</p>
+    </div>
+<ReviewsInfo/>
   </section>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import ReviewsInfo from './ReviewsInfo'
 export default {
   name: 'OwnerInfo',
+  components: { ReviewsInfo },
   computed: {
-    ...mapGetters(['getOwnerInfo', 'toGetFlatInfo']),
-    toShowReview () {
-      return this.toGetFlatInfo.reviews
-    }
+    ...mapGetters(['getOwnerInfo'])
+
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.owner-wrapping {
+  background-color: #E1EFFF;
+  padding: 20px;
+  margin-bottom: 20px;
+}
 
 .apartments-owner {
   padding: 20px;
-  background-color: rgba(68, 63, 63, 0.201);
-  font-weight: 400;
-  text-align: start;
+  width: 30%;
+
   &__title {
     font-size: 18px;
     font-weight: 700;

@@ -6,27 +6,34 @@
           <option value="">Choose city</option>
           <option v-for="city in toGetCities" :key="city">{{ city }}</option>
         </select>
-        <Input @onSubmit='toGetPrice' placeholder="Price from" type="number"/>
-        <div v-if="selectedCity">You Filter City:{{selectedCity}}</div><div v-if="apartmentPrice">Price:{{apartmentPrice}}</div>
+        <Input
+          @onSubmit="toGetPrice"
+          placeholder="Price from"
+          type="number"
+          :rules="isValidField"
+        />
+        <div v-if="selectedCity">You Filter City:{{ selectedCity }}</div>
+        <div v-if="apartmentPrice">Price:{{ apartmentPrice }}</div>
       </div>
       <Button @click.native="filterApartment">Filter</Button>
     </div>
     <div class="apartments-list">
-    <ApartmentItem
-      v-for="flat in toGetApartments"
-      :key="flat.id"
-      :descr="flat.descr"
-      :price="flat.price"
-      :imgUrl="flat.imgUrl"
-      :rating='flat.rating'
-      :id='flat.id'
-      class="apartments-list__item"
-    />
+      <ApartmentItem
+        v-for="flat in toGetApartments"
+        :key="flat.id"
+        :descr="flat.descr"
+        :price="flat.price"
+        :imgUrl="flat.imgUrl"
+        :rating="flat.rating"
+        :id="flat.id"
+        class="apartments-list__item"
+      />
     </div>
   </Container>
 </template>
 
 <script>
+import { number } from 'yup'
 import { mapActions, mapGetters } from 'vuex'
 import Input from '../components/shared/Input'
 import Container from '../components/shared/Container'
@@ -38,7 +45,8 @@ export default {
   components: { Input, Button, ApartmentItem, Container },
   data: () => ({
     selectedCity: '',
-    apartmentPrice: ''
+    apartmentPrice: '',
+    isValidField: number()
   }),
   computed: {
     ...mapGetters(['toGetCities', 'toGetApartments'])
@@ -46,7 +54,10 @@ export default {
   methods: {
     ...mapActions(['fetchCities', 'fetchApartments', 'filterApartments']),
     filterApartment () {
-      this.filterApartments({ city: this.selectedCity, price: this.apartmentPrice })
+      this.filterApartments({
+        city: this.selectedCity,
+        price: this.apartmentPrice
+      })
       // console.log(this.selectedCity)
       // console.log(this.apartmentPrice)
     },
@@ -58,7 +69,6 @@ export default {
     this.fetchCities()
     this.fetchApartments()
   }
-
 }
 </script>
 
@@ -67,7 +77,7 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-bottom: 50px;
-  /* padding: 30px; */
+  padding: 0 20px;
 }
 .input-position {
   display: flex;

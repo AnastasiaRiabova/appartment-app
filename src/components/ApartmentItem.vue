@@ -8,7 +8,10 @@
         <div class="apartments-item__rating">
           <StarRating :rating="rating" />
         </div>
-        <div class="apartments-item__price">UAH{{ price }}</div>
+        <div class="apartments-item__price">{{ price.toLocaleString('de-DE',{
+        style: "currency",
+        currency: "EUR"
+      }) }}</div>
       </div>
     </div>
   </div>

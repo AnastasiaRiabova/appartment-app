@@ -24,6 +24,7 @@ export default {
 
 <style lang="scss" scoped>
 .btn {
+
   display: inline-block;
   font-size: 18px;
   background: #ff662d;

@@ -12,11 +12,13 @@ const oneFlatInfo = {
   mutations: {
     GET_ONE_FLAT_INFO (state, response) {
       state.info = response
-      console.log(response)
+      // console.log(response)
     },
     OWNER_INFO (state, response) {
       state.ownerInfo = response
-      // console.log(state.ownerInfo)
+    },
+    ADD_COMMENT (state, comment) {
+      state.info.reviews.push(comment)
     }
   },
   actions: {
@@ -32,14 +34,13 @@ const oneFlatInfo = {
         dispatch('toggleLoader', false, { root: true })
       }
     },
-    async toPostReview ({ dispatch }, { id, reviewBody }) {
+    async toPostReview ({ commit, dispatch }, { id, reviewBody }) {
       try {
-        console.log(id, reviewBody)
         dispatch('toggleLoader', true, { root: true })
-        // await axios.post(`/apartments/${id}/reviews`, reviewBody)
+        const responce = await axios.post(`/apartments/${id}/reviews`, reviewBody)
+        commit('ADD_COMMENT', responce.data)
       } catch (error) {
         throw new Error(error)
-        // console.log(error)
       } finally {
         dispatch('toggleLoader', false, { root: true })
       }

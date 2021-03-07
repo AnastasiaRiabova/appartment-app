@@ -35,7 +35,9 @@ export default {
       const isValid = await this.rules.validate(value).then(res => res).catch(er => er)
 
       if (isValid.errors) {
-        this.validError = isValid.errors[0]
+        const newArr = [...isValid.errors[0].split(' ')]
+        newArr.splice(7, 20)
+        this.validError = newArr.join(' ')
       } else {
         this.validError = ''
       }

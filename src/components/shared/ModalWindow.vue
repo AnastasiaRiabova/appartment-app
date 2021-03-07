@@ -1,16 +1,16 @@
 <template>
      <div class="backdrop">
     <div class="modal">
-      <Reviews/>
+      <ReviewsForm/>
     </div>
   </div>
 </template>
 
 <script>
-import Reviews from '../Reviews'
+import ReviewsForm from '../ReviewsForm'
 export default {
   name: 'ModalWindow',
-  components: { Reviews }
+  components: { ReviewsForm }
 }
 </script>
 

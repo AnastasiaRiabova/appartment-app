@@ -16,8 +16,8 @@
   </article>
     <OwnerInfo/>
     </div>
-<button @click="openModal"> open Modal
-  </button>
+<!-- <button @click="openModal"> open Modal
+  </button> -->
   <!-- <ModalWindow  v-if="toShowModal"></ModalWindow> -->
     </Container>
 </template>
@@ -31,9 +31,9 @@ import OwnerInfo from '../components/OwnerInfo'
 export default {
   name: 'OneFlat',
   components: { StarRating, OwnerInfo, Container },
-  data: () => ({
-    toShowModal: false
-  }),
+  // data: () => ({
+  //   toShowModal: false
+  // }),
   async created () {
     await this.fetchOneFlatInfo(this.$route.params.id)
   },
@@ -41,20 +41,19 @@ export default {
     ...mapGetters(['toGetFlatInfo'])
   },
   methods: {
-    ...mapActions(['fetchOneFlatInfo', 'toggleModalWindow']),
-    openModal () {
-      this.toggleModalWindow(true)
-    }
-  },
-  info () {
-    console.log(this.toGetFlatInfo)
+    ...mapActions(['fetchOneFlatInfo'])
+    // openModal () {
+    //   this.toggleModalWindow(true)
+    // }
   }
+
 }
 </script>
 
 <style lang="scss" scoped>
 .apartment-main-info {
-  background-color:rgba(128, 128, 128, 0.201);
+  width: 70%;
+padding: 20px;
   &__heading {
     display: flex;
     align-items: center;
@@ -84,6 +83,7 @@ export default {
 }
 .wrapping{
   display: flex;
+  justify-content: space-between;
 
 }
 </style>

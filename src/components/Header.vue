@@ -66,19 +66,19 @@ export default {
   justify-content: space-between;
   align-items: baseline;
   color: white;
-  padding: 5px;
+  padding: 5px 20px;
 }
 .button-style {
   border: none;
   margin: 0;
-  padding: 0;
+  padding: 3px;
   width: auto;
   overflow: visible;
-
+cursor: pointer;
   background: transparent;
 }
 .logo {
-  padding: 10px 0px;
+  padding: 10px 20px;
 }
 .header-main {
   width: 100%;

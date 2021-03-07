@@ -77,6 +77,7 @@ export default {
 
 <style lang="scss" scoped>
 .form {
+  text-align: center;
   padding: 20px;
   margin-left: auto;
   margin-right: auto;
