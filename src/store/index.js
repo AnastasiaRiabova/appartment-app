@@ -7,6 +7,7 @@ import apartments from './modules/apartments'
 import oneFlatInfo from './modules/oneFlatInfo'
 import loader from './modules/loader'
 import modalWindow from './modules/modalWindow'
+import orderApartment from './modules/orderApartment'
 
 Vue.use(Vuex)
 const dataState = createPersistedState({
@@ -21,7 +22,7 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    userAuth, getAllCities, apartments, oneFlatInfo, loader, modalWindow
+    userAuth, getAllCities, apartments, oneFlatInfo, loader, modalWindow, orderApartment
   },
   plugins: [dataState]
 })

@@ -4,24 +4,24 @@ import Homepage from '../views/Homepage.vue'
 import Login from '../views/Login.vue'
 import Registration from '../views/Registration.vue'
 import OneFlat from '../views/OneFlat.vue'
-// import PrivetRoute from '../router/routersTEST'
-// import isAuth from '../store/modules/userAuth'
+import Orders from '../views/Orders.vue'
+
 import store from '../store/index'
 Vue.use(VueRouter)
-
-// console.log(PrivetRoute)
-// const routes = () => {
-//   if (store.getters.isAuth) {
-//     return PrivetRoute.privateRoutes
-//   }
-//   return PrivetRoute.publicRoutes
-// }
 
 const routes = [
   {
     path: '/',
     name: 'homepage',
     component: Homepage,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/orders',
+    name: 'orders',
+    component: Orders,
     meta: {
       requiresAuth: true
     }

@@ -35,7 +35,9 @@
         >Send Review</Button
       >
     </form>
-    <button @click="toCloseModal">close</button>
+    <button @click="toCloseModal" class="button-style">
+      <img src="../assets/images/close.svg" alt="close">
+    </button>
   </div>
 </template>
 
@@ -101,6 +103,7 @@ export default {
 
 <style lang="scss" scoped>
 .form {
+  position: relative;
   text-align: center;
   padding: 20px;
   margin-left: auto;
@@ -122,5 +125,17 @@ export default {
 }
 .text-aria-decoration{
   border-color:  #ff662d;
+}
+.button-style{
+  position: absolute;
+  top: 20px;
+  right:20px;
+  border: none;
+  margin: 0;
+  padding: 3px;
+  width: auto;
+  overflow: visible;
+  cursor: pointer;
+  background: transparent;
 }
 </style>

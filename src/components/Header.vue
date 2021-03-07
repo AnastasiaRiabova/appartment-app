@@ -5,6 +5,8 @@
         <router-link to="/">
           <img src="../assets/images/Logo.svg" alt="Logo" class="logo"
         /></router-link>
+ <router-link to="/orders" class='orders'>
+       My Orders</router-link>
         <div id="nav" v-if="!isAuth">
           <router-link to="/login">Login</router-link> /
           <router-link to="/registration">Registration</router-link>
@@ -25,7 +27,6 @@
               height="20px"
             />
           </button>
-
         </div>
       </div>
     </Container>
@@ -40,7 +41,6 @@ export default {
   name: 'Header',
   components: {
     Container
-
   },
   methods: {
     ...mapActions(['toLogOutUser']),
@@ -60,6 +60,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.orders{
+  color: #ffffff
+}
 .button-position {
   width: 20%;
   display: flex;
@@ -74,7 +77,7 @@ export default {
   padding: 3px;
   width: auto;
   overflow: visible;
-cursor: pointer;
+  cursor: pointer;
   background: transparent;
 }
 .logo {

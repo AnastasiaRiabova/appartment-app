@@ -40,7 +40,7 @@ export default {
     margin-bottom: 20px;
   }
   &__info {
-    margin-top: 6px;
+    margin: 10px 0;
   }
 }
 </style>

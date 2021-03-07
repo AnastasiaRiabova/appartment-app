@@ -1,39 +1,45 @@
 <template>
-<Container>
-<div class="wrapping">
-  <article class="apartment-main-info">
-    <div class="apartment-main-info__heading">
-      <h1 class="apartment-main-info__title">{{ toGetFlatInfo.title }}</h1>
-      <StarRating :rating='toGetFlatInfo.rating' class="apartment-main-info__rating"/>
+  <Container>
+    <div class="wrapping">
+      <article class="apartment-main-info">
+        <div class="apartment-main-info__heading">
+          <h1 class="apartment-main-info__title">{{ toGetFlatInfo.title }}</h1>
+          <StarRating
+            :rating="toGetFlatInfo.rating"
+            class="apartment-main-info__rating"
+          />
+        </div>
+        <img
+          :src="toGetFlatInfo.imgUrl"
+          alt=""
+          class="apartment-main-info__photo"
+          width="1000px"
+          height="650px"
+        />
+        <p class="apartment-main-info__description">
+          {{ toGetFlatInfo.descr }}
+        </p>
+        <div class="apartment-main-info__btn">
+
+            <Button>Book apartment</Button>
+<BookApartmentForm/>
+        </div>
+      </article>
+      <OwnerInfo />
     </div>
-    <img :src="toGetFlatInfo.imgUrl" alt="" class="apartment-main-info__photo" width='1000px' height="650px" />
-    <p class="apartment-main-info__description">{{ toGetFlatInfo.descr }}</p>
-    <div class="apartment-main-info__btn">
-      <!-- <Button @click="handleApartmentsBooking" :loading="isLoading">
-        Забронировать
-      </Button> -->
-    </div>
-  </article>
-    <OwnerInfo/>
-    </div>
-<!-- <button @click="openModal"> open Modal
-  </button> -->
-  <!-- <ModalWindow  v-if="toShowModal"></ModalWindow> -->
-    </Container>
+  </Container>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-// import ModalWindow from '../components/shared/ModalWindow'
+import Button from '../components/shared/Button'
 import Container from '../components/shared/Container'
 import StarRating from '../components/shared/StarRating'
 import OwnerInfo from '../components/OwnerInfo'
+import BookApartmentForm from '../components/BookApartmentForm'
 export default {
   name: 'OneFlat',
-  components: { StarRating, OwnerInfo, Container },
-  // data: () => ({
-  //   toShowModal: false
-  // }),
+  components: { StarRating, OwnerInfo, Container, Button, BookApartmentForm },
   async created () {
     await this.fetchOneFlatInfo(this.$route.params.id)
   },
@@ -42,18 +48,14 @@ export default {
   },
   methods: {
     ...mapActions(['fetchOneFlatInfo'])
-    // openModal () {
-    //   this.toggleModalWindow(true)
-    // }
   }
-
 }
 </script>
 
 <style lang="scss" scoped>
 .apartment-main-info {
   width: 70%;
-padding: 20px;
+  padding: 20px;
   &__heading {
     display: flex;
     align-items: center;
@@ -76,14 +78,12 @@ padding: 20px;
     padding: 20px;
   }
   &__btn {
-    margin-top: 20px;
+    margin: 20px 0;
     text-align: center;
   }
-
 }
-.wrapping{
+.wrapping {
   display: flex;
   justify-content: space-between;
-
 }
 </style>
