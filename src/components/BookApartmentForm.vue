@@ -29,9 +29,9 @@ export default {
     selectedDate: ''
   }),
   methods: {
-    ...mapActions(['toOrdersApartment']),
+    ...mapActions(['toOrdersApartment', 'toggleModalWindow']),
     onHandleDate (date) {
-      this.selectedDate = date.split('-').reverse().join('/')
+      this.selectedDate = date
     },
     async postOrder () {
       try {
@@ -41,6 +41,8 @@ export default {
         }
 
         await this.toOrdersApartment(orderObj)
+        await this.$store.dispatch('fetchOrders')
+        this.toggleModalWindow(false)
       } catch (error) {
         console.log(error)
       }

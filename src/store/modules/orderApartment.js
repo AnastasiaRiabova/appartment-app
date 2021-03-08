@@ -10,6 +10,9 @@ const orderApartment = {
   mutations: {
     GET_ORDERS (state, data) {
       state.orderedApartment = data
+    },
+    DELETE_ORDER (state, id) {
+      state.orderedApartment = state.orderedApartment.filter(el => el.id !== id)
     }
 
   },
@@ -25,22 +28,21 @@ const orderApartment = {
         dispatch('toggleLoader', false, { root: true })
       }
     },
-    async toOrdersApartment ({ dispatch }, order) {
-      console.log(order)
+    async toOrdersApartment ({ dispatch, commit }, order) {
       try {
         dispatch('toggleLoader', true, { root: true })
-        const request = await axios.post('/orders', order)
-        console.log(request)
+        await axios.post('/orders', order)
       } catch (error) {
         throw new Error(error)
       } finally {
         dispatch('toggleLoader', false, { root: true })
       }
     },
-    async deleteOrder ({ dispatch }, orderId) {
+    async deleteOrder ({ dispatch, commit }, orderId) {
       try {
         dispatch('toggleLoader', true, { root: true })
         await axios.delete(`/orders/${orderId}`)
+        commit('DELETE_ORDER', orderId)
       } catch (error) {
         throw new Error(error)
       } finally {

@@ -5,8 +5,9 @@
         <router-link to="/">
           <img src="../assets/images/Logo.svg" alt="Logo" class="logo"
         /></router-link>
- <router-link to="/orders" class='orders'>
-       My Orders</router-link>
+        <router-link to="/orders" class="orders" v-if="isAuth">
+          My Orders<span class="orders-number" v-if="getOrders.length > 0">{{getOrders.length}}</span></router-link
+        >
         <div id="nav" v-if="!isAuth">
           <router-link to="/login">Login</router-link> /
           <router-link to="/registration">Registration</router-link>
@@ -54,14 +55,26 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['isAuth', 'toGetName'])
+    ...mapGetters(['isAuth', 'toGetName', 'getOrders'])
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.orders{
-  color: #ffffff
+.orders-number {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #fff;
+  color: #000000;
+  text-align: center;
+  display: inline-block;
+  top: 6px;
+  padding: 4px;
+  position: absolute;
+}
+.orders {
+  color: #ffffff;
 }
 .button-position {
   width: 20%;

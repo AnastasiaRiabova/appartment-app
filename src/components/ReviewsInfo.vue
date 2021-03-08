@@ -1,12 +1,13 @@
 <template>
   <div>
+    <div class="all-reviews-block">
+      <h3>All Reviews</h3>
+      <StarRating :rating="toGetFlatInfo.rating" />
+    </div>
     <div class="block-view">
-      <div class="all-reviews-block">
-        <h3>All Reviews</h3>
-        <StarRating :rating="toGetFlatInfo.rating" />
-      </div>
-      <div v-if="toShowReview && toShowReview.length === 0  " class="no-review">
-        There are no reviews yet for this apartment. <br> Please add your review
+      <div v-if="toShowReview && toShowReview.length === 0" class="no-review">
+        There are no reviews yet for this apartment. <br />
+        Please add your review
       </div>
       <div
         v-for="{ id, author, content } in toShowReview"
@@ -59,7 +60,7 @@ export default {
 <style lang="scss" scoped>
 .no-review {
   font-size: 18px;
-  margin: 170px 0px;
+  margin: 170px 20px;
 }
 .button-position {
   width: 100%;
@@ -68,17 +69,18 @@ export default {
 }
 .block-view {
   position: relative;
-  padding-top: 120px;
+
   height: 600px;
   overflow-y: scroll;
   border-bottom: 1px solid #e1efff;
+  border-left: 1px solid #e1efff;
 }
 .all-reviews-block {
   padding: 20px;
   background-color: #e1efff;
-  position: fixed;
+  /* position: fixed;
   top: 310px;
-  width: 21%;
+  width: 21%; */
 }
 .review-info {
   padding: 20px;

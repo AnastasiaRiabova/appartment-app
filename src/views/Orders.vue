@@ -2,6 +2,7 @@
   <Container>
     <div>
       <h1 class="orders-header">Your Orders</h1>
+      <p v-if="getOrders.length < 1">you have no orders</p>
       <div
         v-for="{ apartment, id, date } in getApartment"
         :key="id"
@@ -37,7 +38,7 @@
               })
             }}
           </p>
-        <button>delete order</button>
+        <Button @click.native="toDeleteItem(id)">delete order</Button>
         </div>
       </div>
     </div>
@@ -47,32 +48,40 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import Container from '../components/shared/Container'
+import Button from '../components/shared/Button'
 export default {
   name: 'Orders',
   components: {
-    Container
+    Container, Button
   },
   computed: {
     ...mapGetters(['getOrders']),
     getApartment () {
-      console.log(this.getOrders)
+      // console.log(this.getOrders)
       return this.getOrders
     }
   },
   methods: {
-    ...mapActions(['fetchOrders'])
-  },
-  created () {
-    this.fetchOrders()
+    ...mapActions(['fetchOrders', 'deleteOrder']),
+    async toDeleteItem (id) {
+      try {
+        await this.deleteOrder(id)
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
+
 }
 </script>
 
 <style lang="scss" scoped>
+
 .orders {
   display: flex;
   padding: 20px;
   width: 100%;
+
   &-header {
     padding: 20px;
 
