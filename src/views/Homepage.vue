@@ -52,7 +52,7 @@ export default {
     ...mapGetters(['toGetCities', 'toGetApartments'])
   },
   methods: {
-    ...mapActions(['fetchCities', 'fetchApartments', 'filterApartments']),
+    ...mapActions(['fetchCities', 'fetchApartments', 'filterApartments', 'fetchOrders']),
     filterApartment () {
       this.filterApartments({
         city: this.selectedCity,
@@ -68,6 +68,7 @@ export default {
   created () {
     this.fetchCities()
     this.fetchApartments()
+    this.fetchOrders()
   }
 }
 </script>

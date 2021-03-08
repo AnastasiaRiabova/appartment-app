@@ -18,22 +18,18 @@ import Footer from './components/Footer'
 import Loader from './components/shared/Loader'
 import ModalWindow from './components/shared/ModalWindow'
 import ReviewsForm from './components/ReviewsForm'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   name: 'App',
   components: { Header, Footer, Loader, ModalWindow, ReviewsForm },
-  methods: {
-    ...mapActions(['fetchOrders'])
-  },
+
   computed: {
     ...mapGetters(['isAuth', 'getLoader', 'getModalWindow']),
     isLogin () {
       return Boolean(this.isAuth)
     }
-  },
-  mounted () {
-    this.fetchOrders()
   }
+
 }
 </script>
 
