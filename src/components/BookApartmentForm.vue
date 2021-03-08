@@ -1,50 +1,64 @@
 <template>
-    <div class="form">
-<h1 class="header">Please choose date:</h1>
-<form >
-
-<Input :rules='validDate' type="date" @onSubmit="onHandleDate" class="inputMargin" />
-<Button  type="submit" @click.native.prevent="postOrder">confirm</Button>
-</form>
-    </div>
+  <div class="form">
+    <h1 class="header">Please choose date:</h1>
+    <form>
+      <Input
+        :rules="validDate"
+        type="date"
+        @onSubmit="onHandleDate"
+        class="inputMargin"
+      />
+      <Button type="submit" @click.native.prevent="postOrder">confirm</Button>
+    </form>
+  </div>
 </template>
 
 <script>
 import { string } from 'yup'
 import Input from './shared/Input'
 import Button from './shared/Button'
+import { mapActions } from 'vuex'
 export default {
   name: 'BookApartmentForm',
   components: {
-    Input, Button
+    Input,
+    Button
   },
   data: () => ({
     validDate: string().required(),
     selectedDate: ''
   }),
   methods: {
+    ...mapActions(['toOrdersApartment']),
     onHandleDate (date) {
-      this.selectedDate = date
-      console.log(date)
-    }
-  },
-  postOrder () {
+      this.selectedDate = date.split('-').reverse().join('/')
+    },
+    async postOrder () {
+      try {
+        const orderObj = {
+          date: this.selectedDate,
+          apartmentId: this.$route.params.id
+        }
 
+        await this.toOrdersApartment(orderObj)
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .form {
+  top: 30%;
+  position: relative;
   text-align: center;
   padding: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  height: 300px;
-  width: 300px;
+
+  width: 100%;
   background-color: #ffffff;
-  outline: #ff662d solid 1px;
-  box-shadow: 13px 11px 22px 1px rgba(0, 0, 0, 0.6);
+
   /* height: 100vh; */
 }
 .header {

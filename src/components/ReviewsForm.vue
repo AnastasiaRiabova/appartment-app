@@ -9,12 +9,6 @@
         class="inputMargin "
         :rules="isValidAuthor"
       />
-      <!-- <Input
-        @onSubmit="onHandleContent"
-        placeholder="Your Review"
-        type="text-aria"
-        class="inputMargin"
-      /> -->
       <textarea
         v-model="content"
         name="review"
@@ -35,9 +29,7 @@
         >Send Review</Button
       >
     </form>
-    <button @click="toCloseModal" class="button-style">
-      <img src="../assets/images/close.svg" alt="close">
-    </button>
+
   </div>
 </template>
 
@@ -85,18 +77,7 @@ export default {
       } catch (error) {
         console.log(error)
       }
-    },
-    toCloseModal (event) {
-      if (event.key === 'Alt' || event.type === 'click') {
-        this.toggleModalWindow(false)
-      }
     }
-  },
-  mounted () {
-    window.addEventListener('keyup', this.toCloseModal)
-  },
-  destroyed () {
-    window.removeEventListener('keyup', this.toCloseModal)
   }
 }
 </script>
@@ -108,11 +89,10 @@ export default {
   padding: 20px;
   margin-left: auto;
   margin-right: auto;
-  height: 700px;
-  width: 700px;
+
+  width: 100%;
   background-color: #ffffff;
-  outline: #ff662d solid 1px;
-  box-shadow: 13px 11px 22px 1px rgba(0, 0, 0, 0.6);
+
   /* height: 100vh; */
 }
 .header {
@@ -126,16 +106,5 @@ export default {
 .text-aria-decoration{
   border-color:  #ff662d;
 }
-.button-style{
-  position: absolute;
-  top: 20px;
-  right:20px;
-  border: none;
-  margin: 0;
-  padding: 3px;
-  width: auto;
-  overflow: visible;
-  cursor: pointer;
-  background: transparent;
-}
+
 </style>

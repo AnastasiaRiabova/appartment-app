@@ -20,9 +20,7 @@
           {{ toGetFlatInfo.descr }}
         </p>
         <div class="apartment-main-info__btn">
-
-            <Button>Book apartment</Button>
-<BookApartmentForm/>
+     <Button @click.native="openModal">Book apartment</Button>
         </div>
       </article>
       <OwnerInfo />
@@ -36,10 +34,10 @@ import Button from '../components/shared/Button'
 import Container from '../components/shared/Container'
 import StarRating from '../components/shared/StarRating'
 import OwnerInfo from '../components/OwnerInfo'
-import BookApartmentForm from '../components/BookApartmentForm'
+
 export default {
   name: 'OneFlat',
-  components: { StarRating, OwnerInfo, Container, Button, BookApartmentForm },
+  components: { StarRating, OwnerInfo, Container, Button },
   async created () {
     await this.fetchOneFlatInfo(this.$route.params.id)
   },
@@ -47,7 +45,11 @@ export default {
     ...mapGetters(['toGetFlatInfo'])
   },
   methods: {
-    ...mapActions(['fetchOneFlatInfo'])
+    ...mapActions(['fetchOneFlatInfo', 'toggleModalWindow']),
+    openModal () {
+      this.toggleModalWindow('BookApartmentForm')
+    }
+
   }
 }
 </script>

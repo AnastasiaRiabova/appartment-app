@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-    <Loader v-if="getLoader"/>
-    <ModalWindow v-if="getModalWindow"/>
+    <Loader v-if="getLoader" />
+    <ModalWindow v-if="getModalWindow">
+      <ReviewsForm />
+    </ModalWindow>
     <Header />
     <div :class="isLogin ? 'authUser' : 'login'">
       <router-view />
     </div>
     <Footer />
-
   </div>
 </template>
 
@@ -16,10 +17,11 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Loader from './components/shared/Loader'
 import ModalWindow from './components/shared/ModalWindow'
+import ReviewsForm from './components/ReviewsForm'
 import { mapGetters } from 'vuex'
 export default {
   name: 'App',
-  components: { Header, Footer, Loader, ModalWindow },
+  components: { Header, Footer, Loader, ModalWindow, ReviewsForm },
 
   computed: {
     ...mapGetters(['isAuth', 'getLoader', 'getModalWindow']),
@@ -29,12 +31,12 @@ export default {
   }
 }
 </script>
+
 <style lang="scss">
 #app {
   font-family: Montserrat, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
   color: #2c3e50;
   height: calc(100% - 90px);
 }
@@ -48,6 +50,6 @@ export default {
 }
 .authUser {
   padding: 50px;
-   min-height: 100%;
+  min-height: 100%;
 }
 </style>

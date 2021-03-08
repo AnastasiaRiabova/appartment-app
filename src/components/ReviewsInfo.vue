@@ -41,9 +41,6 @@ export default {
     StarRating,
     Button
   },
-  data: () => ({
-    toShowModal: false
-  }),
   computed: {
     ...mapGetters(['toGetFlatInfo']),
     toShowReview () {
@@ -53,7 +50,7 @@ export default {
   methods: {
     ...mapActions(['toggleModalWindow']),
     openModal () {
-      this.toggleModalWindow(true)
+      this.toggleModalWindow('ReviewsForm')
     }
   }
 }

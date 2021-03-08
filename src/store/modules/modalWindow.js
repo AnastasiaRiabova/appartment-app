@@ -1,9 +1,11 @@
 const modalWindow = {
   state: {
     showModal: false
+
   },
   getters: {
     getModalWindow: ({ showModal }) => showModal
+
   },
   mutations: {
     SET_MODAL_WINDOW (state, bool) {

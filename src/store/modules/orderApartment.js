@@ -26,9 +26,11 @@ const orderApartment = {
       }
     },
     async toOrdersApartment ({ dispatch }, order) {
+      console.log(order)
       try {
         dispatch('toggleLoader', true, { root: true })
-        await axios.post('/orders', order)
+        const request = await axios.post('/orders', order)
+        console.log(request)
       } catch (error) {
         throw new Error(error)
       } finally {
