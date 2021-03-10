@@ -78,9 +78,6 @@ export default {
 .all-reviews-block {
   padding: 20px;
   background-color: #e1efff;
-  /* position: fixed;
-  top: 310px;
-  width: 21%; */
 }
 .review-info {
   padding: 20px;

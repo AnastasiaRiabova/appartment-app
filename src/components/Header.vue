@@ -6,7 +6,9 @@
           <img src="../assets/images/Logo.svg" alt="Logo" class="logo"
         /></router-link>
         <router-link to="/orders" class="orders" v-if="isAuth">
-          My Orders<span class="orders-number" v-if="getOrders.length > 0">{{getOrders.length}}</span></router-link
+          My Orders<span class="orders-number" v-if="getOrders.length > 0">{{
+            getOrders.length
+          }}</span></router-link
         >
         <div id="nav" v-if="!isAuth">
           <router-link to="/login">Login</router-link> /
@@ -50,7 +52,12 @@ export default {
         await this.toLogOutUser()
         this.$router.push({ name: 'login' })
       } catch (error) {
-        console.log(error)
+        this.$notify({
+          group: 'foo',
+          title: 'Something went wrong',
+          text: error,
+          type: 'error'
+        })
       }
     }
   },
@@ -115,7 +122,6 @@ export default {
   display: inline-block;
 
   a {
-    /* font-weight: bold; */
     color: #ffffff;
 
     &.router-link-exact-active {

@@ -3,16 +3,18 @@ import axios from '../../plugins/axios.js'
 const apartments = {
   state: {
     flats: [],
-    filterFlats: []
+    filterFlats: [],
+    notFound: ''
   },
   getters: {
-    toGetApartments: ({ flats, filterFlats }) => {
-      if (filterFlats.length !== 0) {
+    toGetApartments: ({ flats, filterFlats, notFound }) => {
+      if (notFound !== '') {
+        return []
+      } else if (filterFlats.length !== 0) {
         return filterFlats
-      } else {
-        return flats
-      }
-    }
+      } else { return flats }
+    },
+    getNotFound: ({ notFound }) => notFound
 
   },
   mutations: {
@@ -20,24 +22,36 @@ const apartments = {
       state.flats = response
     },
     FILTER_APRTM (state, value) {
-      console.log(value)
+      // console.log(value)
       if (value.city && value.price) {
         const filter = state.flats.filter(
           flat =>
             flat.price < value.price && flat.location.city === value.city
         )
 
-        console.log(filter)
-        state.filterFlats = filter
+        if (filter.length === 0) {
+          state.notFound = 'no filtered apartments'
+        } else {
+          state.filterFlats = filter
+          state.notFound = ''
+        }
       } else {
         const filter = state.flats.filter(
           flat =>
             flat.price < value.price || flat.location.city === value.city
         )
 
-        console.log(filter)
-        state.filterFlats = filter
+        if (filter.length === 0) {
+          state.notFound = 'no filtered apartments'
+        } else {
+          state.filterFlats = filter
+          state.notFound = ''
+        }
       }
+    },
+    CLEAR_FILTER (state) {
+      state.filterFlats = []
+      state.notFound = ''
     }
   },
   actions: {
@@ -55,6 +69,9 @@ const apartments = {
     },
     filterApartments ({ commit }, value) {
       commit('FILTER_APRTM', value)
+    },
+    clearFilter ({ commit }) {
+      commit('CLEAR_FILTER')
     }
   }
 }

@@ -42,9 +42,20 @@ export default {
 
         await this.toOrdersApartment(orderObj)
         await this.$store.dispatch('fetchOrders')
+        this.$notify({
+          group: 'foo',
+          text: 'Your order was successfully added',
+          title: 'Hurrah...',
+          type: 'success'
+        })
         this.toggleModalWindow(false)
       } catch (error) {
-        console.log(error)
+        this.$notify({
+          group: 'foo',
+          title: 'Something went wrong',
+          text: error,
+          type: 'error'
+        })
       }
     }
   }
@@ -57,11 +68,8 @@ export default {
   position: relative;
   text-align: center;
   padding: 20px;
-
   width: 100%;
   background-color: #ffffff;
-
-  /* height: 100vh; */
 }
 .header {
   margin: 0;

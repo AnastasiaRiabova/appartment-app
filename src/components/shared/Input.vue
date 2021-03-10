@@ -1,18 +1,18 @@
 <template>
-  <div class="container" >
+  <div class="container">
     <input
-    v-model="vValue"
+      @blur="emitReset"
+      v-model="vValue"
       :placeholder="placeholder"
       :type="type"
       class="input"
       :name="name"
     />
-    <div class="error">{{validError}}</div>
+    <div class="error">{{ validError }}</div>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'Input',
   data: () => ({
@@ -23,31 +23,41 @@ export default {
     placeholder: { type: String },
     type: { type: String },
     name: { type: String },
-    rules: { type: Object }
+    rules: { type: Object },
+    noValidate: { type: Boolean }
   },
   computed: {
-    vValue:
-  {
-    get () {
-      return this.inputValue
-    },
-    async  set (value) {
-      const isValid = await this.rules.validate(value).then(res => res).catch(er => er)
-
-      if (isValid.errors) {
-        const newArr = [...isValid.errors[0].split(' ')]
-        newArr.splice(7, 20)
-        this.validError = newArr.join(' ')
-      } else {
-        this.validError = ''
+    vValue: {
+      get () {
+        return this.inputValue
+      },
+      async set (value) {
+        if (!this.noValidate) {
+          const isValid = await this.rules
+            .validate(value)
+            .then(res => res)
+            .catch(er => er)
+          if (isValid.errors) {
+            const newArr = [...isValid.errors[0].split(' ')]
+            newArr.splice(7, 20)
+            this.validError = newArr.join(' ')
+          } else {
+            this.validError = ''
+          }
+        }
+        this.inputValue = value
+        this.$emit('onSubmit', this.inputValue, Boolean(this.validError))
       }
-      this.inputValue = value
-
-      this.$emit('onSubmit', this.inputValue, Boolean(this.validError))
+    }
+  },
+  methods: {
+    resetInput () {
+      this.vValue = ''
+    },
+    emitReset () {
+      this.$emit('resetInput', this.resetInput)
     }
   }
-  }
-
 }
 </script>
 
@@ -64,16 +74,15 @@ export default {
     border-style: none;
     outline: 1px solid black;
   }
-
 }
-  .error{
-    color: red;
-    font-size: 10px;
-    position: absolute;
-    left: 23px;
-    bottom: -15px;
-  }
-  .container{
-    position: relative;
-  }
+.error {
+  color: red;
+  font-size: 10px;
+  position: absolute;
+  left: 23px;
+  bottom: -15px;
+}
+.container {
+  position: relative;
+}
 </style>

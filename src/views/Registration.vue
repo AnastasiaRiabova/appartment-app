@@ -7,21 +7,21 @@
         placeholder="Name"
         type="text"
         class="inputMargin"
-        :rules='isValidName'
+        :rules="isValidName"
       />
       <Input
         @onSubmit="onHandleEmail"
         placeholder="Email"
         type="text"
         class="inputMargin"
-        :rules='isValidEmail'
+        :rules="isValidEmail"
       />
       <Input
         @onSubmit="onHandlePassword"
         placeholder="Password"
         type="password"
         class="inputMargin"
-        :rules='isValidPassword'
+        :rules="isValidPassword"
       />
       <Button type="submit" @click.native.prevent="toGetValue">Button</Button>
     </form>
@@ -75,7 +75,12 @@ export default {
         console.log('await error')
         this.$router.push({ name: 'homepage' })
       } catch (error) {
-        console.log(error)
+        this.$notify({
+          group: 'foo',
+          title: 'Something went wrong',
+          text: error,
+          type: 'error'
+        })
       }
     }
   }

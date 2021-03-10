@@ -13,31 +13,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.backdrop{
-    width: 100%;
-    height: 100%;
-    background-color: rgba(23, 21, 21, 0.502);
-    position: absolute;
-    z-index: 999;
+.backdrop {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(23, 21, 21, 0.502);
+  position: absolute;
+  z-index: 999;
 }
 .loader {
-position: absolute;
-top: 50%;
-left:50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 110px;
   height: 110px;
   border-radius: 50%;
   background-color: rgba(255, 89, 0, 0.451);
   display: flex;
 
-    &-small {
-
+  &-small {
     margin: auto;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-     background-color: rgb(255, 111, 0);
-}
+    background-color: rgb(255, 111, 0);
+  }
 }
 @keyframes pulse {
   0% {

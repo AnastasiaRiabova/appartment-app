@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <notifications group="foo"  width ="700px"/>
     <Loader v-if="getLoader" />
     <ModalWindow v-if="getModalWindow">
       <ReviewsForm />
@@ -36,8 +37,6 @@ export default {
 <style lang="scss">
 #app {
   font-family: Montserrat, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   height: calc(100% - 90px);
 }

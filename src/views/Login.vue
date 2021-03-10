@@ -8,7 +8,7 @@
         type="text"
         class="inputMargin"
         name="email"
-        :rules='isValidEmail'
+        :rules="isValidEmail"
       />
       <Input
         @onSubmit="onHandlePassword"
@@ -16,11 +16,15 @@
         type="password"
         class="inputMargin"
         name="password"
-        :rules='isValidPassword'
+        :rules="isValidPassword"
       />
-      <Button :disabled='error.password || error.email' type="submit" @click.native.prevent="toGetValue">Button</Button>
+      <Button
+        :disabled="error.password || error.email"
+        type="submit"
+        @click.native.prevent="toGetValue"
+        >Button</Button
+      >
     </form>
-
   </div>
 </template>
 
@@ -35,7 +39,6 @@ export default {
   components: {
     Input,
     Button
-
   },
   data: () => ({
     error: {
@@ -44,19 +47,22 @@ export default {
     },
     email: '',
     password: '',
-    isValidEmail: string().required().email(),
-    isValidPassword: string().required().min(6)
+    isValidEmail: string()
+      .required()
+      .email(),
+    isValidPassword: string()
+      .required()
+      .min(6)
   }),
 
   computed: {},
   methods: {
-
     ...mapActions(['toLoginUser']),
-    async   onHandleEmail (email, error) {
+    async onHandleEmail (email, error) {
       this.email = email
       this.error.email = error
     },
-    async  onHandlePassword (password, error) {
+    async onHandlePassword (password, error) {
       this.password = password
       this.error.password = error
     },
@@ -67,10 +73,14 @@ export default {
         await this.toLoginUser(user)
         this.$router.push({ name: 'homepage' })
       } catch (error) {
-        console.log(error)
+        this.$notify({
+          group: 'foo',
+          title: 'Something went wrong',
+          text: error,
+          type: 'error'
+        })
       }
     }
-
   }
 }
 </script>

@@ -12,7 +12,7 @@
       <textarea
         v-model="content"
         name="review"
-          placeholder="Your Review"
+        placeholder="Your Review"
         id="3"
         cols="30"
         rows="10"
@@ -29,7 +29,6 @@
         >Send Review</Button
       >
     </form>
-
   </div>
 </template>
 
@@ -73,9 +72,20 @@ export default {
           }
         }
         await this.toPostReview(reviewObj)
+        this.$notify({
+          group: 'foo',
+          text: 'Your review was successfully added',
+          title: 'Hurrah...',
+          type: 'success'
+        })
         this.toggleModalWindow(false)
       } catch (error) {
-        console.log(error)
+        this.$notify({
+          group: 'foo',
+          title: 'Something went wrong',
+          text: error,
+          type: 'error'
+        })
       }
     }
   }
@@ -89,11 +99,8 @@ export default {
   padding: 20px;
   margin-left: auto;
   margin-right: auto;
-
   width: 100%;
   background-color: #ffffff;
-
-  /* height: 100vh; */
 }
 .header {
   margin: 0;
@@ -103,8 +110,7 @@ export default {
 .inputMargin {
   margin-bottom: 20px;
 }
-.text-aria-decoration{
-  border-color:  #ff662d;
+.text-aria-decoration {
+  border-color: #ff662d;
 }
-
 </style>

@@ -1,20 +1,27 @@
 <template>
- <router-link  class="apartments-item" :to="{name:'apartment', params: { id }}">
-  <div>
-    <div class="apartments-item__inner">
-      <img :src="imgUrl" alt="flatView"  class="apartments-item__photo">
-      <div class="apartments-item__content">
-        <p class="apartments-item__description">{{ descr }}</p>
-        <div class="apartments-item__rating">
-          <StarRating :rating="rating" />
+  <router-link
+    class="apartments-item"
+    :to="{ name: 'apartment', params: { id } }"
+  >
+    <div>
+      <div class="apartments-item__inner">
+        <img :src="imgUrl" alt="flatView" class="apartments-item__photo" />
+        <div class="apartments-item__content">
+          <p class="apartments-item__description">{{ descr }}</p>
+          <div class="apartments-item__rating">
+            <StarRating :rating="rating" />
+          </div>
+          <div class="apartments-item__price">
+            {{
+              price.toLocaleString("de-DE", {
+                style: "currency",
+                currency: "EUR"
+              })
+            }}
+          </div>
         </div>
-        <div class="apartments-item__price">{{ price.toLocaleString('de-DE',{
-        style: "currency",
-        currency: "EUR"
-      }) }}</div>
       </div>
     </div>
-  </div>
   </router-link>
 </template>
 
@@ -47,7 +54,6 @@ export default {
       require: true
     }
   }
-
 }
 </script>
 
@@ -56,7 +62,7 @@ export default {
   position: relative;
   max-width: 350px;
   padding: 0 20px;
-margin: 0px;
+  margin: 0px;
   &__content {
     position: relative;
     padding: 20px;
@@ -76,14 +82,13 @@ margin: 0px;
   &__inner {
     position: relative;
   }
-  &__rating{
+  &__rating {
     margin-bottom: 20px;
   }
   &__description {
-
-   max-height: calc(1em * 1.4 * 3);
-   overflow: hidden;
-   margin-bottom: 20px;
+    max-height: calc(1em * 1.4 * 3);
+    overflow: hidden;
+    margin-bottom: 20px;
   }
   &__price {
     font-size: 20px;

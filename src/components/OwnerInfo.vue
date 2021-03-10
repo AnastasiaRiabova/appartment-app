@@ -6,7 +6,7 @@
       <p class="apartments-owner__info">Tel: {{ getOwnerInfo.phone }}</p>
       <p class="apartments-owner__info">E-mail: {{ getOwnerInfo.email }}</p>
     </div>
-<ReviewsInfo/>
+    <ReviewsInfo />
   </section>
 </template>
 
@@ -18,14 +18,13 @@ export default {
   components: { ReviewsInfo },
   computed: {
     ...mapGetters(['getOwnerInfo'])
-
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .owner-wrapping {
-  background-color: #E1EFFF;
+  background-color: #e1efff;
   padding: 20px;
   margin-bottom: 20px;
 }

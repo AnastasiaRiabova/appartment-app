@@ -38,7 +38,7 @@
               })
             }}
           </p>
-        <Button @click.native="toDeleteItem(id)">delete order</Button>
+          <Button @click.native="toDeleteItem(id)">delete order</Button>
         </div>
       </div>
     </div>
@@ -52,12 +52,12 @@ import Button from '../components/shared/Button'
 export default {
   name: 'Orders',
   components: {
-    Container, Button
+    Container,
+    Button
   },
   computed: {
     ...mapGetters(['getOrders']),
     getApartment () {
-      // console.log(this.getOrders)
       return this.getOrders
     }
   },
@@ -66,17 +66,26 @@ export default {
     async toDeleteItem (id) {
       try {
         await this.deleteOrder(id)
+        this.$notify({
+          group: 'foo',
+          text: 'Your order was successfully deleted',
+          title: 'Hurrah...',
+          type: 'success'
+        })
       } catch (error) {
-        console.log(error)
+        this.$notify({
+          group: 'foo',
+          title: 'Something went wrong',
+          text: error,
+          type: 'error'
+        })
       }
     }
   }
-
 }
 </script>
 
 <style lang="scss" scoped>
-
 .orders {
   display: flex;
   padding: 20px;
@@ -84,7 +93,6 @@ export default {
 
   &-header {
     padding: 20px;
-
   }
   &-descrpt {
     border: 1px solid #e1efff;
@@ -97,7 +105,6 @@ export default {
   }
   &-items {
     margin-bottom: 10px;
-
   }
 }
 </style>

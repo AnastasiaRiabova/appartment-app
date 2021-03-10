@@ -59,7 +59,6 @@ export default {
   margin: 0 3px;
   flex-shrink: 0;
   &-colored {
-
     background: url("../../assets/images/Star.svg") center no-repeat;
   }
   &-outline {
