@@ -6,20 +6,18 @@
           <option value="">Choose city</option>
           <option v-for="city in toGetCities" :key="city">{{ city }}</option>
         </select>
-        <Input
-          @resetInput="clearInput"
-          @onSubmit="toGetPrice"
+        <input
+          class="input"
           placeholder="Price to"
           type="number"
-          :rules="isValidField"
-          :noValidate="true"
+          v-model="apartmentPrice"
         />
         <div class="filter">
           <div v-if="selectedCity" class="filter-city">
-            City: {{ selectedCity }}
+            {{ selectedCity }}
           </div>
           <div v-if="apartmentPrice" class="filter-price">
-            Price: {{ apartmentPrice }}
+            {{ apartmentPrice }}
           </div>
           <button
             v-if="selectedCity || apartmentPrice"
@@ -49,21 +47,18 @@
 </template>
 
 <script>
-import { number } from 'yup'
+
 import { mapActions, mapGetters } from 'vuex'
-import Input from '../components/shared/Input'
 import Container from '../components/shared/Container'
 import Button from '../components/shared/Button'
 import ApartmentItem from '../components/ApartmentItem'
 
 export default {
   name: 'Homepage',
-  components: { Input, Button, ApartmentItem, Container },
+  components: { Button, ApartmentItem, Container },
   data: () => ({
     selectedCity: '',
-    apartmentPrice: '',
-    isValidField: number(),
-    function: ''
+    apartmentPrice: ''
   }),
   computed: {
     ...mapGetters(['toGetCities', 'toGetApartments'])
@@ -77,28 +72,26 @@ export default {
       'clearFilter'
     ]),
     filterApartment () {
-      this.$router.push({
-        path: '/',
-        query: { city: this.selectedCity, price: this.apartmentPrice }
-      })
-      this.filterApartments({
-        city: this.selectedCity,
-        price: this.apartmentPrice
-      })
+      if (this.selectedCity || this.apartmentPrice) {
+        this.$router.push({
+          path: '/',
+          query: { city: this.selectedCity, price: this.apartmentPrice }
+        })
+        this.filterApartments({
+          city: this.selectedCity,
+          price: this.apartmentPrice
+        })
+      }
     },
-    toGetPrice (price) {
-      this.apartmentPrice = price
-    },
+
     resetFilter () {
       this.$router.push('/')
       this.clearFilter()
       // this.function()
       this.selectedCity = ''
       this.apartmentPrice = ''
-    },
-    clearInput (foo) {
-      this.function = foo
     }
+
   },
   async created () {
     if (Object.keys(this.$router.history.current.query).length > 0) {
@@ -122,17 +115,39 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.input {
+  min-width: 220px;
+  min-height: 40px;
+  box-shadow: 17px 18px 30px -15px rgba(0, 0, 0, 0.41);
+  border: #ff662d solid 1px;
+  margin: 0 20px;
+  &::placeholder {
+    color: grey;
+  }
+  &:focus {
+    border-style: none;
+    outline: 1px solid black;
+  }
+}
 .inputs {
   display: flex;
   justify-content: space-between;
   margin-bottom: 50px;
   padding: 0 20px;
+  @media (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 .input-position {
   display: flex;
+  @media (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
 }
 .selected-input {
-  margin-right: 20px;
   min-width: 220px;
   min-height: 40px;
   box-shadow: 17px 18px 30px -15px rgba(0, 0, 0, 0.41);

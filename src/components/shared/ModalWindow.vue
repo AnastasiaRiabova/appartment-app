@@ -54,6 +54,13 @@ export default {
   width: 50%;
   height: 50%;
   background-color: #fff;
+  @media (max-width: 1125px) {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+  }
 }
 .button-style {
   position: absolute;
@@ -67,5 +74,8 @@ export default {
   overflow: visible;
   cursor: pointer;
   background: transparent;
+}
+.button-style:focus {
+  outline: none;
 }
 </style>

@@ -46,10 +46,16 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100%;
-  padding: 50px;
+  display: flex;
+    align-items: center;
+  /* padding: 50px; */
 }
 .authUser {
   padding: 50px;
   min-height: 100%;
+     @media (max-width: 1220px) {
+padding: 20px
+}
+
 }
 </style>

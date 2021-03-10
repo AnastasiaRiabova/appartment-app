@@ -13,8 +13,6 @@
           :src="toGetFlatInfo.imgUrl"
           alt=""
           class="apartment-main-info__photo"
-          width="1000px"
-          height="650px"
         />
         <p class="apartment-main-info__description">
           {{ toGetFlatInfo.descr }}
@@ -66,10 +64,17 @@ export default {
 .apartment-main-info {
   width: 70%;
   padding: 20px;
+     @media (max-width: 1125px) {
+ width: 100%;
+}
   &__heading {
     display: flex;
     align-items: center;
+         @media (max-width: 1125px) {
+display: block;
+}
   }
+
   &__title {
     font-size: 20px;
     font-weight: 700;
@@ -79,7 +84,11 @@ export default {
     margin-left: 20px;
   }
   &__photo {
-    max-width: 100%;
+   width: 100%;
+                 @media (max-width: 1125px) {
+width: 100%;
+
+}
   }
   &__description {
     line-height: 1.3;
@@ -95,5 +104,8 @@ export default {
 .wrapping {
   display: flex;
   justify-content: space-between;
+     @media (max-width: 1125px) {
+display: block;
+}
 }
 </style>

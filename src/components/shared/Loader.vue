@@ -29,6 +29,7 @@ export default {
   border-radius: 50%;
   background-color: rgba(255, 89, 0, 0.451);
   display: flex;
+  transform: translate(-50%, -50%);
 
   &-small {
     margin: auto;

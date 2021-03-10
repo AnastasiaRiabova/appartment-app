@@ -111,6 +111,7 @@ export default {
   margin-bottom: 20px;
 }
 .text-aria-decoration {
+  width: 100%;
   border-color: #ff662d;
 }
 </style>

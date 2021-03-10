@@ -27,11 +27,16 @@ export default {
   background-color: #e1efff;
   padding: 20px;
   margin-bottom: 20px;
+  overflow: hidden;
 }
 
 .apartments-owner {
   padding: 20px;
   width: 30%;
+               @media (max-width: 1125px) {
+  padding: 0px;
+  width: 100%;
+}
 
   &__title {
     font-size: 18px;

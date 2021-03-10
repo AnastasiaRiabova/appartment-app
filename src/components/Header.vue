@@ -2,9 +2,9 @@
   <div class="header-main">
     <Container>
       <div class="header">
-        <router-link to="/">
+        <button @click="resetFilter" class="button-style">
           <img src="../assets/images/Logo.svg" alt="Logo" class="logo"
-        /></router-link>
+        /></button>
         <router-link to="/orders" class="orders" v-if="isAuth">
           My Orders<span class="orders-number" v-if="getOrders.length > 0">{{
             getOrders.length
@@ -46,7 +46,7 @@ export default {
     Container
   },
   methods: {
-    ...mapActions(['toLogOutUser']),
+    ...mapActions(['toLogOutUser', 'clearFilter']),
     async toLogOut () {
       try {
         await this.toLogOutUser()
@@ -59,6 +59,10 @@ export default {
           type: 'error'
         })
       }
+    },
+    resetFilter () {
+      this.$router.push('/')
+      this.clearFilter()
     }
   },
   computed: {
@@ -68,7 +72,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.orders-number {
+
+.orders {
+  color: #ffffff;
+   @media (max-width: 900px) {
+font-size: 14px;
+  }
+
+  &-number {
   width: 25px;
   height: 25px;
   border-radius: 50%;
@@ -80,18 +91,23 @@ export default {
   padding: 4px;
   position: absolute;
 }
-.orders {
-  color: #ffffff;
 }
-.button-position {
+.button{
+  &-position {
   width: 20%;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   color: white;
   padding: 5px 20px;
+      @media (max-width: 1200px) {
+  &>div, &>img{
+    display: none;
+  }
 }
-.button-style {
+
+}
+&-style {
   border: none;
   margin: 0;
   padding: 3px;
@@ -99,24 +115,29 @@ export default {
   overflow: visible;
   cursor: pointer;
   background: transparent;
+  &:focus{
+ outline: none;
+  }
+}
 }
 .logo {
   padding: 10px 20px;
 }
-.header-main {
-  width: 100%;
-  background-color: #0f1d2d;
-  height: 60px;
-}
+
 .header {
   height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  &-main {
+  width: 100%;
+  background-color: #0f1d2d;
+  height: 60px;
+}
 }
 
 #nav {
-  padding: 10px 30px;
+  padding: 10px 30px 10px 0;
   color: #ffffff;
 
   display: inline-block;
