@@ -3,6 +3,9 @@
     <div class="all-reviews-block">
       <h3>All Reviews</h3>
       <StarRating :rating="toGetFlatInfo.rating" />
+      <div class="button-position">
+      <Button @click.native="openModal">add Review</Button>
+    </div>
     </div>
     <div class="block-view">
       <div v-if="toShowReview && toShowReview.length === 0" class="no-review">
@@ -26,9 +29,7 @@
         <p>"{{ content }}"</p>
       </div>
     </div>
-    <div class="button-position">
-      <Button @click.native="openModal">add Review</Button>
-    </div>
+
   </div>
 </template>
 
@@ -64,8 +65,8 @@ export default {
 }
 .button-position {
   width: 100%;
-  text-align: center;
-  margin-top: 30px;
+  /* text-align: center; */
+  margin-top: 20px;
 }
 .block-view {
   position: relative;

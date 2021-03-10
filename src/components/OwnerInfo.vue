@@ -33,15 +33,16 @@ export default {
 .apartments-owner {
   padding: 20px;
   width: 30%;
-               @media (max-width: 1125px) {
-  padding: 0px;
-  width: 100%;
-}
+  @media (max-width: 1125px) {
+    padding: 0px;
+    width: 100%;
+  }
 
   &__title {
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 20px;
+    margin-top: 0;
   }
   &__info {
     margin: 10px 0;

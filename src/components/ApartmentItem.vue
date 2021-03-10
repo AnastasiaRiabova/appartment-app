@@ -4,7 +4,7 @@
     :to="{ name: 'apartment', params: { id } }"
   >
     <div>
-      <div class="apartments-item__inner">
+      <div class="apartments-item__inner box ">
         <img :src="imgUrl" alt="flatView" class="apartments-item__photo" />
         <div class="apartments-item__content">
           <p class="apartments-item__description">{{ descr }}</p>
@@ -101,6 +101,22 @@ export default {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+}
+.box {
+  animation-name: movePhone;
+  animation-duration: 1000ms;
+  animation-timing-function: linear;
+  animation-iteration-count: 2000ms;
+  animation-direction: alternate;
+}
+@keyframes movePhone {
+  0% {
+  transform: scale(0.1) rotate(0deg);
+  }
+
+  100% {
+  transform: scale(1) rotate(360deg);
   }
 }
 </style>

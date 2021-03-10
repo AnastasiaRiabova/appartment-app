@@ -17,7 +17,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: rgba(23, 21, 21, 0.502);
-  position: absolute;
+  position: fixed;
   z-index: 999;
 }
 .loader {

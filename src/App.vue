@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <notifications group="foo"  width ="700px"/>
     <Loader v-if="getLoader" />
+    <notifications group="foo" width="700px" />
     <ModalWindow v-if="getModalWindow">
       <ReviewsForm />
     </ModalWindow>
@@ -30,7 +30,6 @@ export default {
       return Boolean(this.isAuth)
     }
   }
-
 }
 </script>
 
@@ -47,15 +46,14 @@ export default {
   background-repeat: no-repeat;
   min-height: 100%;
   display: flex;
-    align-items: center;
+  align-items: center;
   /* padding: 50px; */
 }
 .authUser {
   padding: 50px;
   min-height: 100%;
-     @media (max-width: 1220px) {
-padding: 20px
-}
-
+  @media (max-width: 1220px) {
+    padding: 20px;
+  }
 }
 </style>

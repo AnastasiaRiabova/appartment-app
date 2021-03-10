@@ -64,15 +64,15 @@ export default {
 .apartment-main-info {
   width: 70%;
   padding: 20px;
-     @media (max-width: 1125px) {
- width: 100%;
-}
+  @media (max-width: 1125px) {
+    width: 100%;
+  }
   &__heading {
     display: flex;
     align-items: center;
-         @media (max-width: 1125px) {
-display: block;
-}
+    @media (max-width: 1125px) {
+      display: block;
+    }
   }
 
   &__title {
@@ -84,11 +84,10 @@ display: block;
     margin-left: 20px;
   }
   &__photo {
-   width: 100%;
-                 @media (max-width: 1125px) {
-width: 100%;
-
-}
+    width: 100%;
+    @media (max-width: 1125px) {
+      width: 100%;
+    }
   }
   &__description {
     line-height: 1.3;
@@ -104,8 +103,8 @@ width: 100%;
 .wrapping {
   display: flex;
   justify-content: space-between;
-     @media (max-width: 1125px) {
-display: block;
-}
+  @media (max-width: 1125px) {
+    display: block;
+  }
 }
 </style>

@@ -39,7 +39,7 @@ export default {
     color: #ff662d;
   }
   &:focus {
-   outline: blanchedalmond;
+    outline: blanchedalmond;
   }
 }
 </style>

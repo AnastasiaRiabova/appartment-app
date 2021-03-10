@@ -47,7 +47,6 @@
 </template>
 
 <script>
-
 import { mapActions, mapGetters } from 'vuex'
 import Container from '../components/shared/Container'
 import Button from '../components/shared/Button'
@@ -91,7 +90,6 @@ export default {
       this.selectedCity = ''
       this.apartmentPrice = ''
     }
-
   },
   async created () {
     if (Object.keys(this.$router.history.current.query).length > 0) {
@@ -190,6 +188,9 @@ export default {
     width: auto;
     cursor: pointer;
     background: transparent;
+    &:focus {
+      outline: none;
+    }
   }
 }
 </style>

@@ -3,8 +3,8 @@
     <Container>
       <div class="header">
         <button @click="resetFilter" class="button-style">
-          <img src="../assets/images/Logo.svg" alt="Logo" class="logo"
-        /></button>
+          <img src="../assets/images/Logo.svg" alt="Logo" class="logo" />
+        </button>
         <router-link to="/orders" class="orders" v-if="isAuth">
           My Orders<span class="orders-number" v-if="getOrders.length > 0">{{
             getOrders.length
@@ -72,53 +72,52 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .orders {
   color: #ffffff;
-   @media (max-width: 900px) {
-font-size: 14px;
+  @media (max-width: 900px) {
+    font-size: 14px;
   }
 
   &-number {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background-color: #fff;
-  color: #000000;
-  text-align: center;
-  display: inline-block;
-  top: 6px;
-  padding: 4px;
-  position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #000000;
+    text-align: center;
+    display: inline-block;
+    top: 6px;
+    padding: 4px;
+    position: absolute;
+  }
 }
-}
-.button{
+.button {
   &-position {
-  width: 20%;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  color: white;
-  padding: 5px 20px;
-      @media (max-width: 1200px) {
-  &>div, &>img{
-    display: none;
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color: white;
+    padding: 5px 20px;
+    @media (max-width: 1200px) {
+      & > div,
+      & > img {
+        display: none;
+      }
+    }
   }
-}
-
-}
-&-style {
-  border: none;
-  margin: 0;
-  padding: 3px;
-  width: auto;
-  overflow: visible;
-  cursor: pointer;
-  background: transparent;
-  &:focus{
- outline: none;
+  &-style {
+    border: none;
+    margin: 0;
+    padding: 3px;
+    width: auto;
+    overflow: visible;
+    cursor: pointer;
+    background: transparent;
+    &:focus {
+      outline: none;
+    }
   }
-}
 }
 .logo {
   padding: 10px 20px;
@@ -130,10 +129,10 @@ font-size: 14px;
   justify-content: space-between;
   align-items: center;
   &-main {
-  width: 100%;
-  background-color: #0f1d2d;
-  height: 60px;
-}
+    width: 100%;
+    background-color: #0f1d2d;
+    height: 60px;
+  }
 }
 
 #nav {

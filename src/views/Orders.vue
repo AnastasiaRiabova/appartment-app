@@ -90,10 +90,10 @@ export default {
   display: flex;
   padding: 20px;
   width: 100%;
- @media (max-width: 900px) {
- display: block;
-  padding: 0px;
-}
+  @media (max-width: 900px) {
+    display: block;
+    padding: 0px;
+  }
   &-header {
     padding: 20px;
   }
@@ -105,10 +105,10 @@ export default {
   &-image {
     margin: 0;
     min-width: 500px;
-     @media (max-width: 900px) {
- width: 100%;
- min-width: 0;
-}
+    @media (max-width: 900px) {
+      width: 100%;
+      min-width: 0;
+    }
   }
   &-items {
     margin-bottom: 10px;
