@@ -11,7 +11,7 @@
         <img
           :src="apartment.imgUrl"
           alt="Flat-foto"
-          width="500px"
+
           class="orders-image"
         />
 
@@ -104,7 +104,8 @@ export default {
   }
   &-image {
     margin: 0;
-    min-width: 500px;
+    width: 40%;
+    height: 40%;
     @media (max-width: 900px) {
       width: 100%;
       min-width: 0;

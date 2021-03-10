@@ -49,14 +49,15 @@ export default {
 .modal {
   position: absolute;
   box-shadow: 13px 11px 22px 1px rgba(0, 0, 0, 0.6);
-  top: 25%;
-  left: 35%;
+  top: 50%;
+  left: 50%;
   width: 50%;
   height: 50%;
+  transform: translate(-50%, -50%);
   background-color: #fff;
   @media (max-width: 1125px) {
-    left: 0;
-    top: 0;
+    /* left: 0;
+    top: 0; */
     width: 100%;
     height: 100%;
     position: fixed;
