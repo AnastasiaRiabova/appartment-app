@@ -104,13 +104,13 @@ export default {
   }
 }
 .box {
-  animation-name: movePhone;
+  animation-name: movesPict;
   animation-duration: 1000ms;
   animation-timing-function: linear;
   animation-iteration-count: 2000ms;
   animation-direction: alternate;
 }
-@keyframes movePhone {
+@keyframes movesPict {
   0% {
   transform: scale(0.1) rotate(0deg);
   }
