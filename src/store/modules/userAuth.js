@@ -62,6 +62,9 @@ const userAuth = {
       } finally {
         dispatch('toggleLoader', false, { root: true })
       }
+    },
+    localStorageClean ({ commit }) {
+      commit('LOGOUT_USER')
     }
   }
 }
