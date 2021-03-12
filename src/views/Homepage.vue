@@ -31,7 +31,7 @@
       <Button @click.native="filterApartment">Filter</Button>
     </div>
     <div class="apartments-list">
-      <p v-if="toGetApartments.length === 0">nothing found</p>
+      <p v-if="toGetApartments.length === 0 && !getLoader">nothing found</p>
       <ApartmentItem
         v-for="flat in toGetApartments"
         :key="flat.id"
@@ -60,7 +60,7 @@ export default {
     apartmentPrice: ''
   }),
   computed: {
-    ...mapGetters(['toGetCities', 'toGetApartments'])
+    ...mapGetters(['toGetCities', 'toGetApartments', 'getLoader'])
   },
   methods: {
     ...mapActions([

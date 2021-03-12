@@ -23,7 +23,7 @@
         class="inputMargin"
         :rules="isValidPassword"
       />
-      <Button type="submit" @click.native.prevent="toGetValue">Button</Button>
+      <Button type="submit" @click.native.prevent="toGetValue">Registration</Button>
     </form>
   </div>
 </template>

@@ -22,7 +22,7 @@
         :disabled="error.password || error.email"
         type="submit"
         @click.native.prevent="toGetValue"
-        >Button</Button
+        >Login</Button
       >
     </form>
   </div>

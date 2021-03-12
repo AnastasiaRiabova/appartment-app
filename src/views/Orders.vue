@@ -104,8 +104,8 @@ export default {
   }
   &-image {
     margin: 0;
-    width: 40%;
-    height: 40%;
+    width: 40vw;
+    height: 40vh;
     @media (max-width: 900px) {
       width: 100%;
       min-width: 0;

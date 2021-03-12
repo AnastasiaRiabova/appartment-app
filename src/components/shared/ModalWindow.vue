@@ -44,7 +44,7 @@ export default {
   height: 100%;
   background-color: rgba(23, 21, 21, 0.502);
   position: absolute;
-  z-index: 999;
+  z-index: 100;
 }
 .modal {
   position: absolute;

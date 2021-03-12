@@ -5,6 +5,7 @@
       <Input
         :rules="validDate"
         type="date"
+        placeholder="DD.MM.YYYY"
         @onSubmit="onHandleDate"
         class="inputMargin"
       />
