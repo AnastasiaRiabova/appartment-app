@@ -20,7 +20,7 @@ import Loader from './components/shared/Loader'
 import ModalWindow from './components/shared/ModalWindow'
 import ReviewsForm from './components/ReviewsForm'
 import { mapGetters } from 'vuex'
-// import store from './store/index'
+
 export default {
   name: 'App',
   components: { Header, Footer, Loader, ModalWindow, ReviewsForm },
